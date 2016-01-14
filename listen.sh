@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 source conf/*
 
@@ -29,8 +29,8 @@ fi
 
 if [ $# -eq 1 ]
 then
-    for song in $("$1"); do
-	echo "Rproduciendo song de $1"
+    for song in $U6; do
+	echo "Reproduciendo $song de $1"
 	afplay $song
     done
 fi
@@ -38,9 +38,11 @@ fi
 		      
 if [ $# -eq 2 ]
 then
-    if [ -e $SRC1/$2 ]
+    if [ -e $SRC/$2 ]
     then
-	echo "Reprduciendo $SRC/$2 "
-	afplay $SRC1/$2 
+	echo "Reprduciendo $SRC/$2"
+	afplay $SRC/$2 
     fi
 fi
+
+exit
