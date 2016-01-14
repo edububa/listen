@@ -22,14 +22,11 @@ fi
 
 if [ $# -eq 1 ]
 then
-    if [ true ]
-       then
- 	   for var in $1
-	   do
-	       echo "Reprduciendo $var"
-	       afplay $SRC/$var
-	   done
-    fi
+	for var in $1
+	do
+		echo "Reprduciendo $var"
+	        afplay $SRC/$var
+	done
 fi
 		      
 		      
