@@ -1,6 +1,6 @@
 * Listen
 ** What is it?
-The listen.sh is an OS X script that plays list of songs from your terminal
+The listen.sh is an OS X and Linux script that plays list of songs from your terminal
 ** Installation
 The only thing you should do before start using the script is modify your configuration file 
 which is in the conf/ directory.

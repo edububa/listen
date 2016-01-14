@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source conf/*
+OS=$(uname)
 
 if [ $# -eq 0 ]
 then
@@ -30,8 +31,16 @@ fi
 if [ $# -eq 1 ]
 then
     for song in $U5; do
-	echo "Reproduciendo $song de $1"
-	afplay $song
+	if [ $OS = "Darwin" ]
+	then
+	    echo "Reproduciendo $song de $1"
+	    afplay $SRC/$song
+	fi
+	if [ $OS = "Linux" ]
+	then
+	    echo "Reproduciendo $song de $1"
+	    aplay $SRC/$song
+	fi
     done
 fi
 		      
