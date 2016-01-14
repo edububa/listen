@@ -30,7 +30,7 @@ fi
 
 if [ $# -eq 1 ]
 then
-    for song in $U5; do
+    for song in $U8; do
 	if [ $OS = "Darwin" ]
 	then
 	    echo "Reproduciendo $song de $1"
@@ -39,7 +39,7 @@ then
 	if [ $OS = "Linux" ]
 	then
 	    echo "Reproduciendo $song de $1"
-	    aplay $SRC/$song
+	    vlc $SRC/$song
 	fi
     done
 fi
