@@ -29,7 +29,7 @@ fi
 
 if [ $# -eq 1 ]
 then
-    for song in $U6; do
+    for song in $U5; do
 	echo "Reproduciendo $song de $1"
 	afplay $song
     done
