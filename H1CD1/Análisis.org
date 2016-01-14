@@ -1,0 +1,141 @@
+* Análisis de Audios
+** CD1
+*** Tema1
+**** Track 01
+Música vocal
+Voces masculinas y coro de niños
+Ritmo libre
+Monodia
+Forma: A - B - A 
+
+**** Track 02
+Música vocal
+Voces masculinas y coro de niños
+Ritmo libre
+Monodia
+Forma: 
+
+**** Track 06
+Música vocal
+Voces masculinas y coro de niños
+Ritmo libre
+Monodia
+Forma: 
+
+**** Track 07
+Música vocal
+Voces masculinas y coro de niños
+Ritmo libre
+Monodia
+Forma: 
+
+**** Track 08
+Música vocal
+Voces masculinas
+Ritmo Libre
+Monodia
+Forma:
+
+**** Track 09
+Música instrumental y vocal
+Instrumento de cuerda (guitarra/laud)
+Voz masculina
+Ritmo siguiendo versos
+Introducción instrumetal -> estrofa 1 -> estrofa 2 -> estrofa 3 -> ...
+**** Track 10
+Vocal
+Voz masculina
+Ritmo siguiendo versos
+
+**** Track 11
+Instrumental (cuerda, percusión) y vocal (voz masculina)
+Ritmo percutido
+Introducción instrumental -> estrofa1 -> estrofa2....
+
+**** Track 12
+Música vocal
+Voces maculinas
+Polifónica
+Ritmo libre
+Forma:
+(litúrgica)
+Latín
+**** Track 13
+Música vocal
+Voces maculinas
+Polifónica
+Ritmo libre
+Forma: Uno dice algo y otros responden
+(litúrgica)
+Latín
+**** Track 14
+Música vocal
+Voces maculinas
+Polifónica
+Ritmo libre
+Forma:
+(litúrgica)
+Latín
+**** Track 15
+**** Track 16
+**** Track 17 
+**** Track 18
+**** Track 19 
+**** Track 20
+**** Track 21 
+**** Track 22
+**** Track 23
+**** Track 24
+**** Track 25
+**** Track 26
+**** Track 27
+**** Track 28
+**** Track 29
+**** Track 30
+**** Track 31
+**** Track 32
+**** Track 33
+*** Tema2
+*** Tema3
+*** Tema4
+*** Tema5
+** CD2
+*** Track 01
+*** Track 02
+*** Track 03
+*** Track 04
+*** Track 05
+*** Track 06
+*** Track 07
+*** Track 08
+*** Track 09
+*** Track 10
+*** Track 11
+*** Track 12
+*** Track 13
+*** Track 14
+** CD3
+*** Track 01 
+*** Track 02
+*** Track 03
+*** Track 04
+*** Track 05
+*** Track 06
+*** Track 07
+*** Track 08
+*** Track 09
+*** Track 10
+*** Track 11
+*** Track 12
+*** Track 13
+*** Track 14
+*** Track 15
+*** Track 16
+*** Track 17
+*** Track 18
+*** Track 19
+*** Track 20
+*** Track 21
+** CD4
+** CD5
+** CD6
