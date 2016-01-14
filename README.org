@@ -13,7 +13,7 @@ There is two important configurations you should do:
 #+BEGIN_SRC bash
 SRC=H1CD1
 
-U5="$SRC/07..mp3 $SRC/08..mp3"
+U5="07..mp3 08..mp3"
 #+END_SRC
    
 ** Usage
