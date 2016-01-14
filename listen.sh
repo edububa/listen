@@ -7,6 +7,13 @@ then
     exit 0
 fi
 
+if [ $# -gt 2 ]
+then
+    echo "listen.sh: Error(listen.sh [arg1 [arg2]), uso incorrecto del mandato. \"Success\"
+listen.sh+ <<se han introducido $# cuando se esperaba 1 o 2 argumentos>>" 1>&2
+    exit 64
+fi
+
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]
 then
     echo  "listen.sh: Uso: <<./listen.sh [arg1 [arg2]]>>
@@ -14,7 +21,7 @@ listen.sh: <<Script que reproduce los audios adecuados>>"
     exit 0
 fi
 
-if [ "$1" = "options" ]
+if [ "$1" = "list" ]
 then
     cat Audios_index.txt
     exit 0
@@ -22,19 +29,18 @@ fi
 
 if [ $# -eq 1 ]
 then
-	for var in $1
-	do
-		echo "Reprduciendo $var"
-	        afplay $SRC/$var
-	done
+    for song in $("$1"); do
+	echo "Rproduciendo song de $1"
+	afplay $song
+    done
 fi
 		      
 		      
 if [ $# -eq 2 ]
 then
-    if [ -e $SRC/$2 ]
+    if [ -e $SRC1/$2 ]
     then
 	echo "Reprduciendo $SRC/$2 "
-	afplay $SRC/$2 
+	afplay $SRC1/$2 
     fi
 fi
