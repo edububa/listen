@@ -1,5 +1,5 @@
 * playList 
-** What is it?
+* What is it?
 The playList.sh is an OS X and Linux script that plays list of songs from your terminal
 ** Installation
 The only thing you should do before start using the script is modify your configuration file 
