@@ -11,7 +11,7 @@ public class List {
     }
 
     public String getName() {
-	return this.name;
+        return this.name;
     }
     public void addSong(Song s) {
         songs.add(s);
@@ -36,17 +36,19 @@ public class List {
     }
 
     public boolean inList(String name) {
-	int i = 0;
-	while (i < this.songs.size() && !this.songs.get(i).getName().equals(name))
-	    i++;
-	return !(i < this.songs.size() && !this.songs.get(i).getName().equals(name));
+        int i = 0;
+        while (i < this.songs.size() && !this.songs.get(i).getName().equals(name))
+            i++;
+        return !(i < this.songs.size() && !this.songs.get(i).getName().equals(name));
     }
-    
+
     public String toString() {
         String r = "";
         int track = 1;
         for (Song s : this.songs) {
-            r += "Track: " + track + s.toString() + "\n";
+            r += "\tTrack: " + track + " " + s.toString();
+            if (track < this.songs.size() - 1)
+                r += "\n";
             track++;
         }
         return r;

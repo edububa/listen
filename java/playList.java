@@ -7,6 +7,7 @@ public class playList {
     private static boolean exit = true;
     private static String listName;
     private static String path;
+    private static final String PROMPT = "playSong>";
 
     private static int posInListOfList(String name) {
         int i = 0;
@@ -19,26 +20,31 @@ public class playList {
         int i = 0;
         while (i < listOfLists.size() && !listOfLists.get(i).getName().equals(name))
             i++;
-        return !(i < listOfLists.size() && !listOfLists.get(i).getName().equals(name));
+        return i < listOfLists.size() || i < listOfLists.size() && listOfLists.get(i).getName().equals(name);
     }
 
     private static void help() {
+        System.out.println();
+        System.out.println("------------------------------------------------------------------");
         System.out.println("\tnew    -> creates a new list");
         System.out.println("\tadd    -> adds  a new song to a list");
         System.out.println("\tdelete -> removes a song from a list");
         System.out.println("\tplay   -> plays a list");
-	System.out.println("\tlist    -> shows all created lists");
+        System.out.println("\tlist   -> shows all created lists");
         System.out.println("\tshow   -> shows contents of a list");
         System.out.println("\tquit   -> closes playSong");
+        System.out.println("------------------------------------------------------------------");
+        System.out.println();
     }
 
     private static void newList() {
         System.out.println("Write the name for the new list:");
+        System.out.print(PROMPT + "new> ");
         listName = sc.next();
         if (inListOfLists(listName))
             System.out.println("List \"" + listName + "\" already created");
         else
-            listOfLists.add(new List(sc.next()));
+            listOfLists.add(new List(listName));
     }
 
     private static void add() {
@@ -46,18 +52,19 @@ public class playList {
             System.out.println("ERROR! you must create a list first");
         } else {
             System.out.println("Write the name of the list which you want to add a song:");
+            System.out.print(PROMPT + "add> ");
             listName = sc.next();
             if (!inListOfLists(listName))
                 System.out.println("ERROR! List \"" + listName + "\" not found");
             else {
                 System.out.println("Write the path for a song: ");
+                System.out.print(PROMPT + "add>" + listName + "> ");
                 path = sc.next();
                 File f = new File(path);
                 if (!f.exists()) {
                     System.out.println("ERROR! Song not found");
-                } else {
+                } else
                     listOfLists.get(posInListOfList(listName)).addSong(new Song(f));
-                }
             }
         }
     }
@@ -83,34 +90,48 @@ public class playList {
             System.out.println("No lists to show");
         else {
             System.out.println("Which list would you like to see?");
+            System.out.print(PROMPT + "show> ");
             listName = sc.next();
             if (!inListOfLists(listName))
                 System.out.println("ERROR! List \"" + listName + "\" not found");
             else {
-                System.out.println("List: \"" + listName + "\". Conetents:");
+                System.out.println();
+                System.out.println("------------------------------------------------------------------");
+                System.out.println("List: \"" + listName + "\". Contents:");
                 System.out.println(listOfLists.get(posInListOfList(listName)).toString());
+                System.out.println("------------------------------------------------------------------");
+                System.out.println();
             }
         }
     }
 
     private static void list() {
-	if (listOfLists.isEmpty())
-	    System.out.println("No lists created yet");
-	else {
-	    for (List l : listOfLists) {
-		System.out.println(l.getName());
-	    }
-	}
+        if (listOfLists.isEmpty())
+            System.out.println("No lists created yet");
+        else
+            for (List l : listOfLists) {
+                System.out.println(l.getName());
+            }
     }
-    
-    private static void play() {}
+
+    private static void play() {
+        if (listOfLists.isEmpty())
+            System.out.println("No lists to play");
+        else {
+            System.out.println("Which list would you like to play?");
+            System.out.print(PROMPT + "play> ");
+            listName = sc.next();
+            if (!inListOfLists(listName))
+                System.out.println("ERROR! List \"" + listName + "\" not found");
+            else
+                listOfLists.get(posInListOfList(listName)).playList();
+        }
+    }
 
     public static void main(String[] args) {
         while (exit) {
-            System.out.println("What do you want to do?");
+            System.out.print(PROMPT + " ");
             String input = sc.next();
-            listName = "";
-            path = "";
             switch(input) {
             case "help":
                 help();
@@ -130,9 +151,9 @@ public class playList {
             case "play":
                 play();
                 break;
-	    case "list":
-		list();
-		break;
+            case "list":
+                list();
+                break;
             case "quit":
                 exit = false;
                 break;
