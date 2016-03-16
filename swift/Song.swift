@@ -18,7 +18,7 @@ class Song: NSObject {
 
     init(src: String, name: String) {
         self.name = name
-        if checkSong(src){
+        if checkSong(src){
             self.src = src
         } else {
             self.src = ""
