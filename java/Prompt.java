@@ -238,12 +238,6 @@ public class Prompt extends Thread {
 
     private void show(String arg1) {}
 
-    public static void main(String args[]) {
-        Prompt p = new Prompt();
-        p.start();
-    }
-
-
     // Auxiliar functions
     private ArrayList<String> argsArrList(String line) {
         Scanner sc0 = new Scanner(line);
