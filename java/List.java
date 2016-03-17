@@ -31,7 +31,7 @@ public class List {
         this.songs.get(i-1).playSong();
     }
 
-    public void deleteSong(int i){
+    public void removeSong(int i){
         this.songs.remove(i-1);
     }
 
@@ -47,7 +47,7 @@ public class List {
         int track = 1;
         for (Song s : this.songs) {
             r += "\tTrack: " + track + " " + s.toString();
-            if (track < this.songs.size() - 1)
+            if (track < this.songs.size())
                 r += "\n";
             track++;
         }

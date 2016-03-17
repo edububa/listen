@@ -24,6 +24,9 @@ public class Prompt extends Thread {
         case "add":
             add();
             break;
+        case "remove":
+            remove();
+            break;
         case "delete":
             delete();
             break;
@@ -36,7 +39,7 @@ public class Prompt extends Thread {
         case "show":
             show();
             break;
-        case "quit":
+        case "exit":
             this.exit = true;
             break;
         default:
@@ -52,9 +55,12 @@ public class Prompt extends Thread {
         case "add":
             add(arg1);
             break;
+        case "remove":
+            remove(arg1);
+            break;
         case "delete":
             delete(arg1);
-            break;
+	    break;
         case "play":
             play(arg1);
             break;
@@ -71,11 +77,8 @@ public class Prompt extends Thread {
         case "add":
             add(arg1, arg2);
             break;
-        case "delete":
-            delete(arg1, arg2);
-            break;
-        case "play":
-            play(arg1, arg2);
+        case "remove":
+            remove(arg1, arg2);
             break;
         default:
             System.out.println("Error: Type \"help\" if you are searching for some help");
@@ -94,8 +97,10 @@ public class Prompt extends Thread {
                 oneArg(args.get(0));
                 break;
             case 2:
+                twoArgs(args.get(0), args.get(1));
                 break;
             case 3:
+                threeArgs(args.get(0), args.get(1), args.get(2));
                 break;
             default:
                 System.out.println("Error: too many arguments");
@@ -106,13 +111,23 @@ public class Prompt extends Thread {
     private void help() {
         System.out.println();
         System.out.println("------------------------------------------------------------------");
+        System.out.println("Description:");
         System.out.println("\tnew    -> creates a new list");
         System.out.println("\tadd    -> adds  a new song to a list");
-        System.out.println("\tdelete -> removes a song from a list");
+        System.out.println("\tremove -> removes a song from a list");
+        System.out.println("\tdelete -> removes a list");
         System.out.println("\tplay   -> plays a list");
         System.out.println("\tlist   -> shows all created lists");
         System.out.println("\tshow   -> shows contents of a list");
-        System.out.println("\tquit   -> closes playSong");
+        System.out.println("\texit   -> closes playSong");
+        System.out.println("Use:");
+        System.out.println("\tnew    [arg1]");
+        System.out.println("\tshow   [arg1]");
+        System.out.println("\tdelete [arg1]");
+        System.out.println("\tadd    [arg1 [arg2]]");
+        System.out.println("\tremove [arg1 [arg2]]");
+        System.out.println("\tlist");
+        System.out.println("\texit");
         System.out.println("------------------------------------------------------------------");
         System.out.println();
     }
@@ -123,9 +138,13 @@ public class Prompt extends Thread {
             return;
         }
         System.out.println();
+        System.out.println("------------------------------------------------------------------");
+        System.out.println("Lists:");
         for (List l : this.listOfLists) {
-            System.out.println(l.getName());
+            System.out.println("\t" + l.getName());
         }
+        System.out.println("------------------------------------------------------------------");
+        System.out.println();
     }
 
     private void newList() {
@@ -167,10 +186,8 @@ public class Prompt extends Thread {
             case 1:
                 if (args.get(0).equals("quit"))
                     quit = true;
-                else {
+                else
                     add(args.get(0));
-                    quit = true;
-                }
                 break;
             case 2:
                 add(args.get(0), args.get(1));
@@ -199,10 +216,8 @@ public class Prompt extends Thread {
             case 1:
                 if (args.get(0).equals("quit"))
                     quit = true;
-                else {
+                else
                     add(arg1, args.get(0));
-                    quit = true;
-                }
                 break;
             default:
                 System.out.println("Error: Too many arguments");
@@ -222,21 +237,164 @@ public class Prompt extends Thread {
             this.listOfLists.get(posInListOfList(arg1)).addSong(new Song(f));
     }
 
-    private void delete() {}
+    private void remove() {
+        boolean quit = false;
+        while(!quit) {
+            System.out.print(this.pipe + "remove> ");
+            String line = sc.nextLine();
+            ArrayList<String> args = argsArrList(line);
+            switch(args.size()) {
+            case 0:
+                quit = true;
+                break;
+            case 1:
+                if (args.get(0).equals("quit"))
+                    quit = true;
+                else
+                    remove(args.get(0));
+                break;
+            case 2:
+                remove(args.get(0), args.get(1));
+                break;
+            default:
+                System.out.println("Error: Too many arguments");
+            }
+        }
+    }
 
-    private void delete(String arg1) {}
+    private void remove(String arg1) {
+        if (!inListOfLists(arg1)) {
+            System.out.println("Error: list \"" + arg1 + "\" not created");
+            return;
+        }
+        boolean quit = false;
+        while (!quit) {
+            System.out.print(this.pipe + "remove>" + arg1 + "> ");
+            String line = sc.nextLine();
+            ArrayList<String> args = argsArrList(line);
+            switch(args.size()) {
+            case 0:
+                quit = true;
+                break;
+            case 1:
+                if (args.get(0).equals("quit"))
+                    quit = true;
+                else
+                    remove(arg1, args.get(0));
+                break;
+            default:
+                System.out.println("Error: Too many arguments");
+            }
+        }
+    }
 
-    private void delete(String arg1, String arg2) {}
+    private void remove(String arg1, String arg2) {
+        if (!inListOfLists(arg1)) {
+            System.out.println("Error: list \"" + arg1 + "\" not created");
+            return;
+        }
+        if (listOfLists.get(posInListOfList(arg1)).inList(arg1))
+            this.listOfLists.get(posInListOfList(arg1)).removeSong(posInListOfList(arg2));
+        else
+            System.out.println("Error: no song to remove");
+    }
 
-    private void play() {}
+    private void delete() {
+        boolean quit = false;
+        while(!quit) {
+            System.out.print(this.pipe + "delete> ");
+            String line = sc.nextLine();
+            ArrayList<String> args = argsArrList(line);
+            switch(args.size()) {
+            case 0:
+                quit = true;
+                break;
+            case 1:
+                if (args.get(0).equals("quit"))
+                    quit = true;
+                else {
+                    delete(args.get(0));
+                    quit = true;
+                }
+                break;
+            default:
+                System.out.println("Error: Too many arguments");
+            }
+        }
+    }
 
-    private void play(String arg1) {}
+    private void delete(String arg1) {
+        if (!inListOfLists(arg1)) {
+            System.out.println("Error: list \"" + arg1 + "\" not created");
+            return;
+        }
+        this.listOfLists.remove(posInListOfList(arg1));
+    }
 
-    private void play(String arg1, String arg2) {}
+    private void play() {
+        boolean quit = false;
+        while(!quit) {
+            System.out.print(this.pipe + "play> ");
+            String line = sc.nextLine();
+            ArrayList<String> args = argsArrList(line);
+            switch(args.size()) {
+            case 0:
+                quit = true;
+                break;
+            case 1:
+                if (args.get(0).equals("quit"))
+                    quit = true;
+                else
+                    play(args.get(0));
+                break;
+            default:
+                System.out.println("Error: Too many arguments");
+            }
+        }
+    }
 
-    private void show() {}
+    private void play(String arg1) {
+        if (!inListOfLists(arg1)) {
+            System.out.println("Error: list \"" + arg1 + "\" not created");
+            return;
+        }
+        this.listOfLists.get(posInListOfList(arg1)).playList();
+    }
 
-    private void show(String arg1) {}
+    private void show() {
+        boolean quit = false;
+        while(!quit) {
+            System.out.print(this.pipe + "show> ");
+            String line = sc.nextLine();
+            ArrayList<String> args = argsArrList(line);
+            switch(args.size()) {
+            case 0:
+                quit = true;
+                break;
+            case 1:
+                if (args.get(0).equals("quit"))
+                    quit = true;
+                else
+                    show(args.get(0));
+                break;
+            default:
+                System.out.println("Error: Too many arguments");
+            }
+        }
+    }
+
+    private void show(String arg1) {
+        if (!inListOfLists(arg1)) {
+            System.out.println("Error: list \"" + arg1 + "\" not created");
+            return;
+        }
+        System.out.println();
+        System.out.println("------------------------------------------------------------------");
+        System.out.println(this.listOfLists.get(posInListOfList(arg1)).getName() + ": ");
+        System.out.println(this.listOfLists.get(posInListOfList(arg1)).toString());
+        System.out.println("------------------------------------------------------------------");
+        System.out.println();
+    }
 
     // Auxiliar functions
     private ArrayList<String> argsArrList(String line) {
